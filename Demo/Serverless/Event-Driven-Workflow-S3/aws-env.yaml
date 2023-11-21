@@ -1,7 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description:
+Description: This contains the pixelator demo
 
 Outputs:
+  LambdaFunction:
+    Description: The lambda function created
+    Value: !GetAtt MyLambda.Arn
 
 Resources:
   # S3 Bucket which will store all of the processed images
