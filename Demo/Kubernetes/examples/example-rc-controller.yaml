@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: frontend
+spec:
+  replicas: <NUMBER OF REPLICAS>
+  selector:
+    app: myapp
+  template:
+    # Below here, you can resuse the content in pod-definition.yaml 
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80

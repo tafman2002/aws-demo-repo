@@ -1,0 +1,12 @@
+# This yaml file defines a Nginx image which will be deployed to a Pod as a running instance
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    tier: frontend
+spec:
+  containers:
+    - name: nginx
+      image: nginx
