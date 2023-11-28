@@ -1,3 +1,4 @@
+# Note: Make sure it is compatible with the pod definition yaml and Cloud Provider like AWS, Azure, GCP etc.
 apiVersion: v1
 kind: Service
 metadata:
