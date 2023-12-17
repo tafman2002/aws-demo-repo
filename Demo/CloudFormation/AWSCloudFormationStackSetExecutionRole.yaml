@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Configure the AWSCloudFormationStackSetExecutionRole to enable the use of your
+  AWS account as a target account where in StackSets can be deployed.
+Parameters:
+  AdministratorAccountId:
+    Type: String
+    Description: Enter the AWS Account ID of the administrator account
+    MaxLength: 12
+    MinLength: 12
+Resources:
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: AWSCloudFormationStackSetExecutionRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                - !Ref AdministratorAccountId
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      ManagedPolicyArns:
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/AdministratorAccess"
