@@ -1,0 +1,18 @@
+---
+schemaVersion: "2.2"
+description: "Command Document to install Apache"
+parameters:
+  Message:
+    type: "String"
+    description: "Example"
+    default: "Hello World"
+mainSteps:
+  - action: "aws:runShellScript"
+    name: "configure"
+    inputs:
+      runCommand:
+        - "sudo yum update -y"
+        - "sudo yum install -y httpd"
+        - "sudo systemctl start httpd"
+        - "sudo systemctl enable httpd"
+        - 'echo "{{Message}} from $(hostname -f)" > /var/www/html/index.html'

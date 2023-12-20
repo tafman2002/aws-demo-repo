@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description:
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Metadata:
+      AWS::CloudFormation::Init:
+        config:
+          packages:
+            yum:
+              httpd: []
+          files:
+            /var/www/html/index.html:
+              content: !Sub |
+                <html>
+                <body>
+                <h1>Hello World</h1>
+                </body>
+                </html>
+              mode: "000644"
+              owner: apache
+              group: apache
+          services:
+            sysvinit:
+              httpd:
+                enabled: "true"
+                ensureRunning: "true"
+    Properties:
+      ImageId: ""

@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+hooks:
+  BeforeInstall:
+    - location: Scripts/UnzipResourceBundle.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: Scripts/RunResourceTests.sh
+      timeout: 300
+  ApplicationStart:
+    - location: Scripts/RunResourceTests.sh
+      timeout: 300
+  ValidateService:
+    - location: Scripts/MonitorService.sh
+      timeout: 3600
+      runas: codedeployuser
