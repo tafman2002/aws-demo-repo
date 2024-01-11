@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+hooks:
+  BeforeInstall:
+      timeout: 300
+      runas: root
+  AfterInstall:
+      timeout: 300
+  AfterAllowTestTraffic:
+
+  BeforeAllowTraffic:
+    - location: Scripts/MonitorService.sh
+      timeout: 3600
+      runas: codedeployuser

@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description:
+Parameters:
+  IamPasswordPolicyParamMinimumPasswordLength:
+    Default: '14'
+    Type: String
+Resources:
+  DummyServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ""

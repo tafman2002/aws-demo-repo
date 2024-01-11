@@ -5,6 +5,7 @@ Parameters:
     Type: String
     Description: The AMI ID to use for the EC2 instance
     Default: a
+
 Resources:
   # Ec2 Web Server
   ServerHost:
