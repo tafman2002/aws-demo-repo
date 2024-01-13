@@ -21,7 +21,7 @@ not accessing any remote services such as remote state, provider APIs, etc.
 - **Terraform fmt** is used to rewrite Terraform configuration files to a canonical format and style.
 Terraform can figure out what dependencies exist between resources and in what order to create or destroy them.
 
-All of the state changes are reflected in the ```terraform.tfstate``` file. This file is used to map real world resources to your configuration.
+All state changes are reflected in the ```terraform.tfstate``` file. This file is used to map real world resources to your configuration.
 For those familiar with Amazon CloudFormation (CFN), terraform plan is similar to change sets and terraform apply is similar to
 deploying the change sets/ stack creation.
 ## Common Use Cases
