@@ -35,7 +35,7 @@ resource "aws_route_table" "route-table-public" {
   }
 }
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public-subnet-A" {
   vpc_id = aws_vpc.demonstration-vpc.id
   map_public_ip_on_launch = true
   tags = {
@@ -43,7 +43,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-resource "aws_subnet" "private" {
+resource "aws_subnet" "private-subnet-A" {
   vpc_id = aws_vpc.demonstration-vpc.id
     tags = {
         Name = "terraform-demo-private-subnet"
@@ -84,4 +84,13 @@ resource "aws_iam_role" "web-server-role" {
 resource "aws_iam_instance_profile" "web-server-ip" {
   name = "web-server-ip"
   role = aws_iam_role.web-server-role.name
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-0bb84b8ffd87024d8"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.public-subnet-A.id
+  tags = {
+    Name = "terraform-demo-app-server"
+  }
 }
