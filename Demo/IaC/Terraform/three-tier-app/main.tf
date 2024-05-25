@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.0.0"
+      version = ">= 5.51.0"
     }
   }
 }
@@ -11,6 +11,14 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
+resource "aws_vpc" "demonstration-vpc" {
+  cidr_block = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support = true
+  tags = var.vpc_tags
+}
+
 
 resource "aws_internet_gateway" "internet-gateway" {
     vpc_id = aws_vpc.demonstration-vpc.id
@@ -24,15 +32,6 @@ resource "aws_route_table" "route-table-public" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.internet-gateway.id
-  }
-}
-
-resource "aws_vpc" "demonstration-vpc" {
-  cidr_block = "10.0.0.0/20"
-  enable_dns_hostnames = true
-  enable_dns_support = true
-  tags = {
-    Name = "terraform-demo-vpc"
   }
 }
 
@@ -51,13 +50,13 @@ resource "aws_subnet" "private" {
     }
 }
 
-resource "aws_budgets_budget" "keep-costs-low" {
-  budget_type       = "COST"
-  limit_amount      = "20"
-  limit_unit        = "USD"
-  time_unit         = "MONTHLY"
-  time_period_start = "2024-01-01_00:00"
-}
+#resource "aws_budgets_budget" "keep-costs-low" {
+#  budget_type       = "COST"
+#  limit_amount      = "20"
+#  limit_unit        = "USD"
+#  time_unit         = "MONTHLY"
+#  time_period_start = "2024-01-01_00:00"
+#}
 
 resource "aws_iam_role" "web-server-role" {
   name = "web-server-role"
