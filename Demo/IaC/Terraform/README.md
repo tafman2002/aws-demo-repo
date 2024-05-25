@@ -29,6 +29,10 @@ deploying the change sets/ stack creation.
 - Platform as a Service
 - Monitoring solutions such as Terraform
 - Kubernetes
+
+## Modularization
+Terraform allows for modularization of code. This is done by creating modules that can be reused across different projects i.e
+a module for creating a VPC, a module for creating an EC2 instance, etc. 
 ## Resources
 - [Introduction to Terraform AWS workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/41c5a1b6-bd3e-41f4-bd46-85ab7dc6dad4/en-US/2-fundamentals )
 - [Terraform](https://www.terraform.io/)

@@ -11,3 +11,10 @@ terraform {
     }
   }
 }
+
+module "storage" {
+  source = "./modules/storage"
+  src_bucket_name = "tafa-dst-bucket"
+  dst_bucket_name = "tafa-src-bucket"
+  tag_environment = var.tag_environment
+}
